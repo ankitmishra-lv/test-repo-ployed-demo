@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todos</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell" aria-labelledby="app-title">
+      <header class="app-header">
+        <p class="eyebrow">Task List</p>
+        <h1 id="app-title">Todos</h1>
+      </header>
+
+      <section class="todo-panel" aria-label="Todo manager">
+        <form class="todo-form" id="todo-form">
+          <label for="todo-title">New todo</label>
+          <div class="todo-entry">
+            <input
+              id="todo-title"
+              name="title"
+              type="text"
+              maxlength="200"
+              autocomplete="off"
+              placeholder="Add a task"
+              required
+            >
+            <button type="submit" id="add-button">Add</button>
+          </div>
+        </form>
+
+        <div class="error-banner" id="error-banner" role="alert" hidden>
+          <p id="error-message"></p>
+          <button type="button" id="dismiss-error" aria-label="Dismiss error">Dismiss</button>
+        </div>
+
+        <div class="todo-status" id="todo-status" aria-live="polite"></div>
+        <ul class="todo-list" id="todo-list" aria-label="Todos"></ul>
+      </section>
+    </main>
+  </body>
+</html>

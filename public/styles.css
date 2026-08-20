@@ -1,0 +1,251 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f6f4;
+  --surface: #ffffff;
+  --surface-strong: #ffffff;
+  --text: #1d211f;
+  --muted: #68706b;
+  --line: #d8dedc;
+  --accent: #1c7a5a;
+  --accent-strong: #11543d;
+  --danger: #ad343e;
+  --danger-bg: #fff0f1;
+  --focus: #d68c1f;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 246, 244, 0.98)),
+    var(--bg);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.app-shell {
+  width: min(100% - 32px, 720px);
+  margin: 0 auto;
+  padding: 56px 0;
+}
+
+.app-header {
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 8vw, 4.25rem);
+  line-height: 0.95;
+}
+
+.todo-panel {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 18px 45px rgba(29, 33, 31, 0.12);
+}
+
+.todo-form {
+  display: grid;
+  gap: 10px;
+}
+
+.todo-form label {
+  font-weight: 750;
+}
+
+.todo-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.todo-entry input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--text);
+  background: var(--surface-strong);
+}
+
+.todo-entry input::placeholder {
+  color: #858b87;
+}
+
+.todo-entry button,
+.error-banner button,
+.delete-button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 6px;
+  font-weight: 750;
+}
+
+.todo-entry button {
+  padding: 0 18px;
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.todo-entry button:hover:not(:disabled) {
+  background: var(--accent-strong);
+}
+
+.error-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 12px;
+  border: 1px solid rgba(173, 52, 62, 0.35);
+  border-radius: 6px;
+  color: #681c23;
+  background: var(--danger-bg);
+}
+
+.error-banner[hidden] {
+  display: none;
+}
+
+.error-banner p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.error-banner button,
+.delete-button {
+  padding: 0 12px;
+  color: var(--danger);
+  background: #ffffff;
+  border: 1px solid rgba(173, 52, 62, 0.32);
+}
+
+.error-banner button:hover,
+.delete-button:hover:not(:disabled) {
+  color: #ffffff;
+  background: var(--danger);
+}
+
+.todo-status {
+  margin-top: 22px;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.todo-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 22px 0 0;
+  list-style: none;
+}
+
+.todo-list:empty {
+  margin: 0;
+}
+
+.todo-item {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+}
+
+.todo-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.todo-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+}
+
+.todo-item.is-completed .todo-title {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.delete-button {
+  min-width: 74px;
+}
+
+@media (max-width: 520px) {
+  .app-shell {
+    width: min(100% - 24px, 720px);
+    padding: 32px 0;
+  }
+
+  .todo-panel {
+    padding: 18px;
+  }
+
+  .todo-entry,
+  .error-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .todo-entry button,
+  .error-banner button {
+    width: 100%;
+  }
+
+  .todo-item {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .delete-button {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
