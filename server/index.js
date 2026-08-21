@@ -92,6 +92,17 @@ app.patch("/api/todos/:id", (req, res) => {
   return res.status(200).json(updatedTodo);
 });
 
+app.delete("/api/todos/completed", (_req, res) => {
+  let deleted = 0;
+  for (const [id, todo] of todos) {
+    if (todo.completed) {
+      todos.delete(id);
+      deleted++;
+    }
+  }
+  return res.status(200).json({ deleted });
+});
+
 app.delete("/api/todos/:id", (req, res) => {
   if (!todos.has(req.params.id)) {
     return notFound(res);
@@ -102,7 +113,7 @@ app.delete("/api/todos/:id", (req, res) => {
   return res.status(204).send();
 });
 
-app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(express.static([...path.join(__dirname, "..", "public")]));
 
 app.use((_req, res) => {
   return notFound(res);
